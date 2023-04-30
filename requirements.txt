@@ -4,3 +4,5 @@ numpy
 gtts
 pyttsx3
 googletrans
+torch
+tensorflow
