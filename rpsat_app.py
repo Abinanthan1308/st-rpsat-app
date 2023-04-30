@@ -81,7 +81,7 @@ if uploaded_file is not None:
         st.write("")
     else : 
         with open("summary.txt", "rb") as f:
-        contents = f.read()
+            contents = f.read()
         contents = contents.decode("utf-16")
         pattern = re.compile(name, re.IGNORECASE)
         matches = pattern.finditer(contents)
