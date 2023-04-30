@@ -9,7 +9,7 @@ import numpy as np
 import re
 
 st.set_page_config(page_title="RPSAT", page_icon="")
-st.image("rpsat.png")
+st.image("/app/st-rpsat-app/rpsat.png")
 st.markdown("<h1 style='text-align: center; color: grey;'>Research Paper Summarizer and Audio Translator</h1>", unsafe_allow_html=True)
 name = st.text_input('Search')
 
@@ -22,12 +22,12 @@ def translate_summary(summ, lang):
     return " ".join(mylist).replace('{', '').replace('}', '').replace("'summary_text': '", "").replace("'summary_text'", "")
 
 def play_audio(summary, lang):
-    with open('summary.txt',  "wb") as f:
+    with open('/app/st-rpsat-app/summary.txt',  "wb") as f:
         f.write(bytes(summary, encoding="utf-16"))
-    file = open("summary.txt", "r", encoding="utf-16").read().replace("\n", " ")
+    file = open("/app/st-rpsat-app/summary.txt", "r", encoding="utf-16").read().replace("\n", " ")
     myobj = gTTS(text=str(file), lang=lang, slow=False)
-    myobj.save("summary.wav")
-    audio_file = open('summary.wav', 'rb')
+    myobj.save("/app/st-rpsat-app/summary.wav")
+    audio_file = open('/app/st-rpsat-app/summary.wav', 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/wav')
 
@@ -77,7 +77,7 @@ if uploaded_file is not None:
     if name == "":
         st.write("")
     else : 
-        with open("summary.txt", "rb") as f:
+        with open("/app/st-rpsat-app/summary.txt", "rb") as f:
             contents = f.read()
         contents = contents.decode("utf-16")
         pattern = re.compile(name, re.IGNORECASE)
