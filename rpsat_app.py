@@ -71,25 +71,25 @@ if uploaded_file is not None:
     text_summary = ' '.join([summ['summary_text'] for summ in res])
     language = st.selectbox("Select Language to translate paper", ("English", "Tamil", "Hindi", "Telugu","Kn -  Kannada", "Gujarati", "Ml - Malayalam","Urdu", "Bn - Bengali", "Arabic",
                                                                "De - German", "Es - Spanish", "French", "Korean", "Russian", "Italian"))
-    if st.button("OK"):
-        trans_string = "Translating your Summary to " + str(language)
-        st.write(trans_string)
-        final = translate_summary(res, lang=str(language)[:2].lower())
-        st.write(final)
-        play_audio(final, lang=str(language)[:2].lower())
-        if name == "":
-            st.write("")
-        else : 
-            with open("summary.txt", "rb") as f:
-                contents = f.read()
-            contents = contents.decode("utf-16")
-            pattern = re.compile(name, re.IGNORECASE)
-            matches = pattern.finditer(contents)
-            for match in matches:
-                start = match.start()
-                end = match.end()
-                highlighted = contents[:start] + "  ======>   " + contents[start:end] + "   <======  " + contents[end:]
-                contents = highlighted
-            st.write(contents)
+    
+    trans_string = "Translating your Summary to " + str(language)
+    st.write(trans_string)
+    final = translate_summary(res, lang=str(language)[:2].lower())
+    st.write(final)
+    play_audio(final, lang=str(language)[:2].lower())
+    if name == "":
+        st.write("")
+    else : 
+        with open("summary.txt", "rb") as f:
+        contents = f.read()
+        contents = contents.decode("utf-16")
+        pattern = re.compile(name, re.IGNORECASE)
+        matches = pattern.finditer(contents)
+        for match in matches:
+            start = match.start()
+            end = match.end()
+            highlighted = contents[:start] + "  ======>   " + contents[start:end] + "   <======  " + contents[end:]
+            contents = highlighted
+        st.write(contents)
 
     
