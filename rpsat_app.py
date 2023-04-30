@@ -35,8 +35,7 @@ def play_audio(summary, lang):
 
 text_list = []
 uploaded_file = st.file_uploader("Choose a file")
-language = st.selectbox("Select Language to translate paper", ("English", "Tamil", "Hindi", "Telugu","Kn -  Kannada", "Gujarati", "Ml - Malayalam","Urdu", "Bn - Bengali", "Arabic",
-                                                               "De - German", "Es - Spanish", "French", "Korean", "Russian", "Italian"))
+
 if uploaded_file is not None:
     reader = PdfReader(uploaded_file)
     number_of_pages = len(reader.pages)
@@ -70,6 +69,8 @@ if uploaded_file is not None:
     res = summarizer(chunks, max_length=120, min_length=30, do_sample=False)
     # st.write(' '.join([summ['summary_text'] for summ in res]))
     text_summary = ' '.join([summ['summary_text'] for summ in res])
+    language = st.selectbox("Select Language to translate paper", ("English", "Tamil", "Hindi", "Telugu","Kn -  Kannada", "Gujarati", "Ml - Malayalam","Urdu", "Bn - Bengali", "Arabic",
+                                                               "De - German", "Es - Spanish", "French", "Korean", "Russian", "Italian"))
     trans_string = "Translating your Summary to " + str(language)
     st.write(trans_string)
     final = translate_summary(res, lang=str(language)[:2].lower())
