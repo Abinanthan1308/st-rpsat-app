@@ -22,12 +22,12 @@ def translate_summary(summ, lang):
     return " ".join(mylist).replace('{', '').replace('}', '').replace("'summary_text': '", "").replace("'summary_text'", "")
 
 def play_audio(summary, lang):
-    with open('summary.txt',  "wb") as f:
+    with open('app/static/summary.txt',  "wb") as f:
         f.write(bytes(summary, encoding="utf-16"))
-    file = open("summary.txt", "r", encoding="utf-16").read().replace("\n", " ")
+    file = open("app/static/summary.txt", "r", encoding="utf-16").read().replace("\n", " ")
     myobj = gTTS(text=str(file), lang=lang, slow=False)
-    myobj.save("summary.wav")
-    audio_file = open('summary.wav', 'rb')
+    myobj.save("app/static/summary.wav")
+    audio_file = open('app/static/summary.wav', 'rb')
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/wav')
 
@@ -77,7 +77,7 @@ if uploaded_file is not None:
     if name == "":
         st.write("")
     else : 
-        with open("summary.txt", "rb") as f:
+        with open("app/static/summary.txt", "rb") as f:
             contents = f.read()
         contents = contents.decode("utf-16")
         pattern = re.compile(name, re.IGNORECASE)
