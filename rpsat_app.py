@@ -13,6 +13,7 @@ st.image("/app/st-rpsat-app/rpsat.png")
 st.markdown("<h1 style='text-align: center; color: grey;'>Research Paper Summarizer and Audio Translator</h1>", unsafe_allow_html=True)
 name = st.text_input('Search')
 
+@st.cache
 def translate_summary(summ, lang):
     mylist = []
     translator = Translator()
