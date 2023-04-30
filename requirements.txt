@@ -1,1 +1,6 @@
 pypdf2
+transformers
+numpy
+gtts
+pyttsx3
+googletrans
